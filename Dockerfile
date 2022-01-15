@@ -1,13 +1,13 @@
 FROM node:16
 
-RUN npm install -g pm2
-
 ENV USER=evobot
 
 # install python and make
 RUN apt-get update && \
 	apt-get install -y python3 build-essential && \
 	apt-get purge -y --auto-remove
+
+RUN npm install -g pm2
 
 # create evobot user
 RUN groupadd -r ${USER} && \
