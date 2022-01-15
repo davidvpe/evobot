@@ -21,4 +21,6 @@ VOLUME [ "/home/evobot/sounds" ]
 
 COPY --chown=${USER}:${USER}  . .
 
-ENTRYPOINT [ "node", "index.js" ]
+RUN npm install -g pm2
+
+ENTRYPOINT [ "pm2", "start", "index.js" ]
