@@ -1,4 +1,6 @@
-FROM node:14.16.1-slim
+FROM node:16
+
+RUN npm install -g pm2
 
 ENV USER=evobot
 
@@ -17,10 +19,9 @@ WORKDIR /home/evobot
 
 COPY --chown=${USER}:${USER} package*.json ./
 RUN npm install
+
 VOLUME [ "/home/evobot/sounds" ]
 
 COPY --chown=${USER}:${USER}  . .
-
-RUN npm install -g pm2
 
 ENTRYPOINT [ "pm2", "start", "index.js" ]
